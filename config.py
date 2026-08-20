@@ -2,3 +2,6 @@ BASE_URL = "https://www.chitai-gorod.ru/"
 CART_URL = "https://www.chitai-gorod.ru/cart"
 BOOK_URL = 'https://web-agr.chitai-gorod.ru/web/api/v1'
 SERCH_URL = 'https://web-agr.chitai-gorod.ru/web/api/v2'
+
+# Тестовые данные:
+TOKEN_API = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODcyODM3NjQsImlhdCI6MTc4NzExNTc2NCwiaXNzIjoiL2FwaS92MS9hdXRoL2Fub255bW91cyIsInN1YiI6IjZjODAyMGUxMTBkNDFlNDc5N2Y0MmUzZmExYjI2YzA5ZjNjNTYxMjM2ZjMwMjNmYmQwZGFjZmZiNTViN2U4ZTAiLCJ0eXBlIjoxMH0.hMRDLb3p7xFgTsD8dacuh3ZPMqa73C799dN49xavwlX4VkkrdAXp9MqOD92tat1WZavBEESZN5Fz3PG_lbUNwkdxpRyepg-SDr1f4liXyqOw6Cz_63AXgj1k8Xw7q5GKf5IJ97GBktMHeXLy1nA1RJLrWFzivvFW3rO6Os0bC0MfmibduEb3g3PU8z_EuUvpPVf9f9W7sizf3PJ-pvu2Q6fO9Ru6WJ9mQHrd6CyW2VCH1rZoPI469d0aa3IFV7QRU36W943yyVgj4JtB6uomwdcORi5pF0jLb9ZQCxVXkVt9mXOEZ5IC8DjR9itmk5BjVfCRCs9d51lzZuCySv11Ig"

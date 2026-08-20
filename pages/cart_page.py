@@ -1,7 +1,7 @@
+from  selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from config import CART_URL
 
 
 class CartPage:
@@ -13,13 +13,9 @@ class CartPage:
     LOCATION_BOX = (By.CLASS_NAME, "tippy-box")
     LOCATION_BUTTON = (By.CLASS_NAME, "header-location")
 
-    def __init__(self, browser):
+    def __init__(self, browser: webdriver):
         self.browser = browser
         self.wait = WebDriverWait(self.browser, 10)
-
-    def open_cart(self) -> None:
-        """Открытие страницы корзины"""
-        self.browser.get(CART_URL)
 
     def book_in_cart(self) -> None:
         """Проверка наличия книги в корзине"""
@@ -34,9 +30,10 @@ class CartPage:
     def clear_cart(self) -> None:
         """Очистка корзины"""
         try:
-            self.wait.until(EC.element_to_be_clickable(
+            clear_button = self.wait.until(EC.element_to_be_clickable(
                 self.CLEAR_BUTTON
             ))
+            clear_button.click()
             print("Корзина очищена")
         except Exception as e:
             f'Кнопка очистки не найдена:{e}'
