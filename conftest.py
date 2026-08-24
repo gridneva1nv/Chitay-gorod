@@ -16,7 +16,7 @@ def browser():
 def headers():
     """Фикстура для заголовков с токеном авторизации"""
     headers = {
-        'accept': 'application/json, text/plain, */*',
+        'accept': 'application/json',
         'Accept-Encoding': 'gzip, deflate, br, zstd',
         'Referer': BASE_URL,
         'Content-Type': 'application/json',

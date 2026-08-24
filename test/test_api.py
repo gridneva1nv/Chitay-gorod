@@ -3,11 +3,10 @@ import requests
 import allure
 from config import BOOK_URL, SERCH_URL
 
-
 @allure.severity("Critical")
 @allure.id("BookPage-2")
-@allure.feature("Проверка получения информации о книге по её slug")
-@allure.title("API тесты")
+@allure.feature("Проверка получения информации о книге")
+@allure.title("API тесты: Получение информации о книге по её slug")
 @pytest.mark.api
 @pytest.mark.positive
 def test_book_info_api(headers):
@@ -23,7 +22,7 @@ def test_book_info_api(headers):
 @allure.severity("Critical")
 @allure.id("Cart-2")
 @allure.feature("Взаимодействие с корзиной")
-@allure.title("API тест: проверка доступности корзины")
+@allure.title("API тест: Проверка доступности корзины")
 @pytest.mark.api
 @pytest.mark.positive
 def test_view_cart(headers):
@@ -39,7 +38,7 @@ def test_view_cart(headers):
 @pytest.mark.api
 @pytest.mark.positive
 def test_add_book_to_cart_api(headers):
-    book_id = 7893273
+    book_id = 3089169
     body = {"id": book_id}
     with allure.step("Отправка запроса на добавление книги в корзину"):
         response = requests.post(f'{BOOK_URL}/cart/product', headers=headers, json=body)
@@ -48,7 +47,7 @@ def test_add_book_to_cart_api(headers):
     with allure.step("Проверка подтверждения добавления книги в ответе"):
         if response.text.strip():
             response_data = response.json()
-            assert "id" in response_data, "Отсутствует подтверждение добавления в корзину"
+            assert book_id in response_data, f"Отсутствует подтверждение добавления в корзину"
 
 @allure.severity("Critical")
 @allure.id("Cart-4")
@@ -57,11 +56,24 @@ def test_add_book_to_cart_api(headers):
 @pytest.mark.api
 @pytest.mark.positive
 def test_clear_cart_api(headers):
+    book_id = 3089169
+    body = {"id": book_id}
+    with allure.step("Отправка запроса на добавление книги в корзину"):
+        response = requests.post(f'{BOOK_URL}/cart/product', headers=headers, json=body)
+    with allure.step("Проверка подтверждения добавления книги в ответе"):
+        if response.text.strip():
+            response_data = response.json()
+            assert "id" in response_data, f"Отсутствует подтверждение добавления в корзину"
     with allure.step("Отправка запроса на очистку корзины"):
         response_body = {"deleteAll": True}
         response = requests.delete(f'{BOOK_URL}/cart', headers=headers, json=response_body)
     with allure.step("Проверка статус кода 204"):
         assert response.status_code == 204, f"Ошибка: ожидался статус 204, но получен {response.status_code}"
+    with allure.step("Отправка запроса на просмотр корзины"):
+        response = requests.get(f'{BOOK_URL}/cart', headers=headers)
+    with allure.step("Проверка отсутствия книг в корзине"):
+        response_data = response.json()
+        assert len(response_data['products']) == 0, f"Корзина не пуста"
 
 @allure.severity("Critical")
 @allure.id("Search-1")

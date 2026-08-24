@@ -7,14 +7,12 @@ from config import BASE_URL
 
 class MainPage:
     """ Класс для работы с главной страницей интернет магазина "Читай-город"
-        У класса есть окно локализации, всплывающее окно, окно запроса на куки
+        Обладает методами для взаимодействия с окном локализации, всплывающим окном, окном запроса на куки, открытия корзины
     """
     POPUP_BUTTON = (By.CLASS_NAME, "popmechanic-close")
     COOKIE_BUTTON = (By.XPATH, "(//div[contains(text(),'Понятно, закрыть')])[1]")
     LOCATION_BOX = (By.CLASS_NAME, "tippy-box")
     LOCATION_BUTTON = (By.XPATH, "(//div[contains(text(),'Да, я здесь')])[1]")
-    ADD_TO_CART_BUTTON = (By.XPATH, "(//div[@class='chg-app-button chg-app-button--primary chg-app-button--s chg-app-button--breeze product-buttons__main-action product-buttons__main-action--stretch product-buttons__main-action product-buttons__main-action--stretch'])[2]")
-    CARD_BUTTON = (By.XPATH, "//button[@aria-label='Корзина']")
     SEARCH_FORM = (By.ID, "app-search")
     SEARCH_BUTTON = (By.CLASS_NAME, "search-form__icon-search")
     BOOK_ITEM = (By.CLASS_NAME, "product-card__caption")
@@ -92,59 +90,3 @@ class MainPage:
             return True
         except Exception:
             return False
-    def add_to_cart(self)-> None:
-        """Добавление книги в корзину"""
-        try:
-            element = self.wait.until(EC.presence_of_element_located(
-                self.ADD_TO_CART_BUTTON
-            ))
-            self.browser.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
-            buy_element = self.wait.until(EC.element_to_be_clickable(
-                self.ADD_TO_CART_BUTTON
-            ))
-            buy_element.click()
-            print("Книга добавлена в корзину.")
-        except Exception as e:
-            print(f"Не удалось найти кнопку для добавления в корзину: {e}")
-
-    def open_cart(self) -> None:
-        """Открытие страницы корзины"""
-        try:
-            card_button = self.wait.until(EC.element_to_be_clickable(
-                self.CARD_BUTTON
-            ))
-            card_button.click()
-            print("Кнопка корзины нажата")
-        except Exception as e:
-            print(f'Кнопка корзины не найдена: {e}')
-
-    def send_phrase(self, phrase: str) -> None:
-        """Внесение фразы в поле поиска"""
-        try:
-            search_form = self.wait.until(EC.element_to_be_clickable(
-                self.SEARCH_FORM
-            ))
-            search_form.clear()
-            search_form.send_keys(f"{phrase}")
-            print(f"В поле поиска внесена фраза: {phrase}")
-        except Exception as e:
-            print(f"Поле поиска не найдено или недоступно: {e}")
-
-    def find_book(self) -> None:
-        """Запуск поиска книг по фразе из строки поиска"""
-        try:
-            search_button = self.wait.until(EC.element_to_be_clickable(
-                self.SEARCH_BUTTON
-            ))
-            search_button.click()
-            print("Кнопка поиска нажата")
-        except Exception as e:
-            print(f"Кнопка поиска не нажата или не найдена: {e}")
-
-    def book_items(self) -> int:
-        """Получение количества книг со страницы"""
-        books = []
-        books = self.browser.find_elements(
-            *self.BOOK_ITEM
-        )
-        return len(books)
