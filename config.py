@@ -4,4 +4,4 @@ BOOK_URL = 'https://web-agr.chitai-gorod.ru/web/api/v1'
 SERCH_URL = 'https://web-agr.chitai-gorod.ru/web/api/v2'
 
 # Тестовые данные:
-TOKEN_API = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3VzZXItcmlnaHQiLCJzdWIiOjg3OTY5MzcsImlhdCI6MTc4NzU2NDY4NCwiZXhwIjoxNzg3NTY4Mjg0LCJ0eXBlIjoyMCwianRpIjoiMDFhMDMzMjgtNzViMi03M2RiLWI5MWQtNmQ4Njg0ODFmY2EzIiwicm9sZXMiOjEwfQ.TWWfOz7ElwgIUbeFIU6XN5uZ-WoFeukD16dDeB6tcs3KngUlIDWndBwcZa0uPhw0DfAiDcG0DNC5ZaVoN9SfXFqR47T_Tt8KSz0qGB8k1h9PSBNvnv2e7OwDjhkz5OmG1t8Y0CSXJggsFeW0UM_Axc0vs-k_FzAYLDMFmiDSN4i8mOpvOq4saKw_ABsdRcbUjVjvYB_jTg391BP7SYvZdKH6oYDkPx1KPebIcE0P0G4WbD_-S3B5qNYl2NOW_kc6GESWdHin-LUNkC514EuScyixue1kGIh7Lx7y3x9toEzw___9oco2gXbwR2tRXR8ef72_0jRgfKAZKJuxG4JOJw"
+TOKEN_API = "" # укажите значение "access-token" (без Bearer%20) из Cookies сайта
